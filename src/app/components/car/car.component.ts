@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Car } from 'src/app/models/car';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car',
@@ -6,14 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  car1 = { carId: 1, carName: 'BMV', colorId: 2, unitPrice: 5000 };
-  car2 = { carId: 2, carName: 'BMV', colorId: 4, unitPrice: 25000 };
-  car3 = { carId: 3, carName: 'BMV', colorId: 6, unitPrice: 110000 };
-  car4 = { carId: 4, carName: 'BMV', colorId: 3, unitPrice: 78000 };
-  cars = [this.car1, this.car2, this.car3, this.car4];
-  constructor() {}
+ 
+  Cars:Car[] = [];
+  dataLoaded = false;
+  constructor(private carService:CarService) {}
 
   ngOnInit(): void {
-    
+    this.getCars();
+  }
+  getCars(){
+    this.carService.getCars().subscribe(response=>{
+     this.Cars=response.data
+     this.dataLoaded=true;
+    })
+
   }
 }
