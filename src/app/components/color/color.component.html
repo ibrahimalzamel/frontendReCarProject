@@ -1,1 +1,11 @@
-<p>color works!</p>
+<ul class="list-group">
+  <li [class]="getAllColorClass()" routerLink="/Colors" >Tüm Renkler </li>
+    <li (click)="setCurrentColor(color)"
+    routerLink="color/{{color.colorId}}"
+    *ngFor="let color of colors" 
+   [class]="getCurrentColor(color)">
+      {{color.colorName}}
+    </li>
+  </ul>
+
+  <h5 *ngIf ="currentColor">{{currentColor.colorName}} seçtiniz</h5>

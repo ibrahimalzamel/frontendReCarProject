@@ -12,29 +12,32 @@ export class BrandService {
 
   //HttpGet[getall , getbyid,getbrandname]
   //HttpPost[add,delete , update]
-  apiUrlAll='https://localhost:44319/api/Brands/getall';
-  apiUrlAdd='https://localhost:44319/api/Brands/add';
-  apiUrlDelete='https://localhost:44319/api/Brands/delete';
-  apiUrlUpdate='https://localhost:44319/api/Brands/update';
-  
+  apiUrl='https://localhost:44319/api/';
   constructor(private httpClient:HttpClient) { }
 
   getAllBrands():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrlAll);
+    let newPath = this.apiUrl+"Brands/getall";
+    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   }
-  getByBrandId():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrlAll);
+  getByBrandId(brandId:number):Observable<ListResponseModel<Brand>>{
+    let newPath = this.apiUrl+"Brands/getbyid?id="+brandId;
+    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   } 
-  getByBrandName():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrlAll);
+  getByBrandName(brandName:string):Observable<ListResponseModel<Brand>>{
+    let newPath = this.apiUrl+"Brands/getbrandname?name="+brandName;
+    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   } 
+  
   AddBrand():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrlAdd);
+    let newPath = this.apiUrl+"Brands/add";
+    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   } 
   DeleteBrand():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrlDelete);
+    let newPath = this.apiUrl+"Brands/delete";
+    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   } 
   UpdateBrand():Observable<ListResponseModel<Brand>>{
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrlUpdate);
+    let newPath = this.apiUrl+"Brands/update";
+    return this.httpClient.get<ListResponseModel<Brand>>(newPath);
   }
 }

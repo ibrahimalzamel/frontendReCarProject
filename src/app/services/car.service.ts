@@ -10,10 +10,35 @@ import { Car } from '../models/car';
 })
 export class CarService {
 
-  apiUrl='https://localhost:44319/api/Cars/getall';
+  apiUrl='https://localhost:44319/api/';
   constructor(private httpClient:HttpClient) { }
 
-    getCars():Observable<ListResponseModel<Car>>{
-    return this.httpClient.get<ListResponseModel<Car>>(this.apiUrl);
+  getCars():Observable<ListResponseModel<Car>>{
+    let newPath = this.apiUrl+"Cars/getall";
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+  getCarById(carId:number):Observable<ListResponseModel<Car>>{
+    let newPath = this.apiUrl+"Cars/getbyid?id="+carId;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+
+  getCarsByColorId(colorId:number):Observable<ListResponseModel<Car>>{
+    let newPath = this.apiUrl+"Cars/getbycolorid?id="+colorId;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+
+  getCarsByBrandId(brandId:number):Observable<ListResponseModel<Car>>{
+    let newPath = this.apiUrl+"Cars/getbybrandid?id="+brandId;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+
+  getCarDetail():Observable<ListResponseModel<Car>>{
+    let newPath = this.apiUrl+"Cars/getCarsDetailDtos";
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+
+  getCarByDailyPrice(min:number,max:number):Observable<ListResponseModel<Car>>{
+    let newPath = this.apiUrl+"Cars/getByDailyPrice?min="+min+"max="+max;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 }
