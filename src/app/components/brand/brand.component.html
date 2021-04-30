@@ -1,17 +1,3 @@
-   
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Tüm Markalar    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#"> <li (click)="setCurrentBrand(brand)"
-        routerLink="brand/{{brand.brandId}}"
-        *ngFor="let brand of brands" 
-       [class]="getCurrentBrand(brand)">
-          {{brand.brandName}}
-        </li></a>
-    </div>
-  </div>
-
    <ul class="list-group">
     <li [class]="getAllBrandClass()" routerLink="/Brands" >Tüm Markalar </li>
       <li (click)="setCurrentBrand(brand)"
