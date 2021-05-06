@@ -1,25 +1,39 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
+
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Marka ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" 
+    placeholder="arama ifadesi giriniz">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert alert-success" role="alert">
+    {{filterText}}
+  </div>
+
 <table *ngIf="dataLoaded==true" class="table">
-    <thead>
-        <tr>
-            <th>CarId</th>
-            <th>BrandId</th>
-            <th>ColorId</th>
-            <th>modelYaer</th>
-            <th>dailyPrice</th>
-            <th>descriptio</th>
-          
-        </tr>
-    
-        <tr *ngFor="let car of Cars">
-            <td>{{car.carId}}</td>
-            <td>{{car.brandId}}</td>
-            <td>{{car.colorId}}</td>
-            <td>{{car.modelYaer}}</td>
-            <td>{{car.dailyPrice}}</td>
-            <td>{{car.descriptio}}</td>
-        </tr>
-    </thead>
-    </table>
+  <thead>
+    <tr>
+      <th>Araba Id</th>
+      <th>Marka Id</th>
+      <th>Renk Id</th>
+      <th>model</th>
+      <th>Fiyat </th>
+      <th>KDV 'li' </th>
+      <th>Açıklama</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of Cars">
+      <td>{{car.carId}}</td>
+      <td>{{car.brandId}}</td>
+      <td>{{car.colorId}}</td>
+      <td>{{car.modelYaer}}</td>
+      <td>{{car.dailyPrice |currency}}</td>
+      <td>{{car.dailyPrice |vatAdded:18|currency}}</td>
+      <td>{{car.descriptio}}</td>
+      <td><button (click)="addToCart(car)" type="button" class="btn btn-success">Sepete Ekle</button></td>
+    </tr>
+  </tbody>
+</table>

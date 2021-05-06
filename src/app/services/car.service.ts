@@ -38,9 +38,19 @@ export class CarService {
     let newPath = this.apiUrl+"Cars/getCarsDetailDtos";
     return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
   }
+  GetCarsDetailByBrandName(brandName:string):Observable<ListResponseModel<CarDetail>>{
+    let newPath = this.apiUrl+"Cars/getcarsdetailbybrandname?brandname="+brandName;
+    return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
+  }
+  GetCarsDetailByColorName(colorName:string):Observable<ListResponseModel<CarDetail>>{
+    let newPath = this.apiUrl+"Cars/getcarsdetailbycolorname?colorname="+colorName;
+    return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
+  }
+ 
 
   getCarByDailyPrice(min:number,max:number):Observable<ListResponseModel<Car>>{
     let newPath = this.apiUrl+"Cars/getByDailyPrice?min="+min+"max="+max;
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 }
+

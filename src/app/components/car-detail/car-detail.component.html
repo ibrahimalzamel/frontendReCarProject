@@ -1,27 +1,69 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-    <table *ngIf="dataLoaded==true" class="table">
-        <thead>
-            <tr>
-                <th>CarId</th>
-                <th>BrandName</th>
-                <th>ColorName</th>
-                <th>modelYaer</th>
-                <th>dailyPrice</th>
-                <th>descriptio</th>
-                <th>imagePath</th>
-              
-            </tr>
+
+      <div class="mb-3">
+        <label for="filterText" class="form-label">Marka ara</label>
+        <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" 
+        placeholder="arama ifadesi giriniz">
+      </div>
+      <div *ngIf="filterText.length>2" class="alert alert-success" role="alert">
+        {{filterText}}
+      </div>
+
+      
+
+<div class="row px-2">
+    <div *ngFor="let carDetail of CarDetails | filterPipe: filterText" class="card mx-2 my-2" style="width: 19.29rem">
+        <img [src]="" class="image-details my-2" [alt]="carDetail.brandName + ' ' + carDetail.colorName"
+              [title]="carDetail.brandName + ' ' + carDetail.colorName" />
+          <div class="card-body text-center">
+              <span class="text-danger fw-bold">{{ carDetail.brandName }} 
+                <span class="text-secondary">{{ carDetail.carName}}</span>
+              </span>
+           </div>
+          <ul class="list-group text-center">
+            <li class="list-group-item details">
+                <span class="mx-1 badge bg-danger">{{ carDetail.colorName }}</span>
+                <span class="mx-1 badge bg-primary">{{ carDetail.modelYear }}</span>
+                <span class="mx-1 badge bg-dark">{{ carDetail.dailyPrice }} ₺</span>
+            </li>
+            <li class="list-group-item details">
+                <span class="mx-1 badge bg-secondary">{{ carDetail.carId }}</span>
+                <span class="mx-1 badge bg-success">{{ carDetail.brandName }}</span>
+                <span class="mx-1 badge bg-warning">{{ carDetail.fuelName }}</span>
+            </li>
+          </ul>
+          <div class="card-body text-center">
+              <button routerLink="" class="btn btn-outline-primary btn-sm shadow-none mx-1">
+                Detaylar
+              </button>
+              <button (click)="addToCart(carDetail)" type="button" class="btn btn-success btn-sm mx-1">Kirala</button>
+          </div>
+    </div>
+</div>
+<table *ngIf="dataLoaded==true" class="table">
+  <thead>
+      <tr>
+          <th>Araba Id</th>
+          <th>Marka</th>
+          <th>Rengi</th>
+          <th>Model</th>
+          <th>Fiyat</th>
+          <th>KDV'li Adedi</th>
+          <th>Açıklama</th>
+          <th></th>
         
-            <tr *ngFor="let carDetail of CarDetails">
-                <td>{{carDetail.carId}}</td>
-                <td>{{carDetail.brandName}}</td>
-                <td>{{carDetail.colorName}}</td>
-                <td>{{carDetail.modelYear}}</td>
-                <td>{{carDetail.dailyPrice}}</td>
-                <td>{{carDetail.description}}</td>
-                <td>{{carDetail.imagePath}}</td>
-            </tr>
-        </thead>
-        </table>
+      </tr>
+      <tr *ngFor="let carDetail of CarDetails| filterPipe:filterText">
+          <td>{{carDetail.carId}}</td>
+          <td>{{carDetail.brandName |uppercase}}</td>
+          <td>{{carDetail.colorName |lowercase}}</td>
+          <td>{{carDetail.modelYear}}</td>
+          <td>{{carDetail.dailyPrice |currency}}</td>
+          <td>{{carDetail.dailyPrice |vatAdded:18|currency}}</td>
+          <td>{{carDetail.description}}</td>
+          <td><button (click)="addToCart(carDetail)" type="button" class="btn btn-success">Sepete ekle</button></td>
+      </tr>
+  </thead>
+  </table>

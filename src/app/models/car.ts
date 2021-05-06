@@ -5,4 +5,6 @@ export interface Car{
     modelYaer:Date;
     dailyPrice:number;
     descriptio:string;
+    carName :string;
+    fuelName : string;
     }

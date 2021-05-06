@@ -6,5 +6,6 @@ export  interface CarDetail  {
     dailyPrice:number;
     description:string;
     imagePath:string;
-    
+    carName :string;
+    fuelName : string;
 }
