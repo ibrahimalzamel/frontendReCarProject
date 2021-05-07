@@ -1,0 +1,99 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Araba Ekle</h5></div>
+                <div class="card-body">
+                    <form [formGroup] ="carAddForm">
+                      
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="carName">Araba adı</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    id="carName" formControlName="carName" 
+                                    class="form-control" placeholder="Araba adı"/>
+                                </div> 
+                            </div>
+                       </div>
+                       <div class="row">
+                            <div class="col-md-2">
+                                <label for="brandId">Marka Id</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="number" 
+                                    id="brandId" formControlName="brandId" 
+                                    class="form-control" placeholder="Marka"/>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="colorId">Renk Id</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="number" 
+                                    id="colorId" formControlName="colorId" 
+                                    class="form-control" placeholder="Renk Id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="modelYaer">Model</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    id="modelYaer" formControlName="modelYear" 
+                                    class="form-control" placeholder="Model Yılı"/>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="dailyPrice">Günlük Fiyat</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="number" 
+                                    id="dailyPrice" formControlName="dailyPrice" 
+                                    class="form-control" placeholder="günlük fiyat"/>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="descriptio">açıklama</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    id="descriptio" formControlName="descriptio" 
+                                    class="form-control" placeholder="Açıklama"/>
+                                </div>  
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="fuelName">Yakıt</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    id="fuelName" formControlName="fuelName" 
+                                    class="form-control" placeholder="yakıt adı"/>
+                                </div>  
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-fill btn-primary" (click)="add()" >Ekle</button>
+                </div>
+        </div>
+    </div>
+</div>
